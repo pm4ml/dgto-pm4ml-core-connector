@@ -1,0 +1,4 @@
+{
+    "action": "LOOKUP",
+    "msisdn": cml.header('idValue')
+}

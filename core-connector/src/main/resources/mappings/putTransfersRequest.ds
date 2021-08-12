@@ -1,0 +1,4 @@
+{
+  accountId: payload.quoteRequest.body.payee.partyIdInfo.partyIdentifier,
+  amount: payload.prepare.body.amount.amount
+}

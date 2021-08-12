@@ -1,0 +1,6 @@
+{
+    "action": cml.header('action'),
+    "msisdn": cml.header('msisdn'),
+    "amount": cml.header('amount'),
+    "reference_number": cml.header('reference_number')
+}

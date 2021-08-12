@@ -1,0 +1,6 @@
+{
+    "action": "TRANSFER",
+    "msisdn": payload.quoteRequest.body.payee.partyIdInfo.partyIdentifier,
+    "reference_number": "400932B1",
+    "amount": payload.prepare.body.amount.amount
+}

@@ -1,0 +1,14 @@
+{
+  "filterConstraints": [
+    {
+      "filterSelection": "ACCOUNT_HOLDER_ID",
+      "filterElement": "EQUALS",
+      "value": cml.header('idValueTrimmed')
+    },
+    {
+      "filterSelection":"ACCOUNT_STATE",
+      "filterElement":"IN",
+      "values":["ACTIVE","ACTIVE_IN_ARREARS"]
+    }
+  ]
+}

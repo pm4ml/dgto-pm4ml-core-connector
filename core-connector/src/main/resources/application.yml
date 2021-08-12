@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: local
+
+server:
+  port: 9091
+  metrics:
+    port: 7001
+  api:
+    listen:
+      host: 0.0.0.0
+      port: 3003
+
+camel:
+  component: jetty
+  springboot:
+    main-run-controller: true
+    name: dgto-pm4ml-core-connector
+    stream-caching-enabled: true
+
+### IMPORTANT: the below properties are here for development reference purpose
+### for the cluster usage (Helm Chart) it are being set through system variable
+### (java -Ddfsp.host=... -Ddfsp.username=... -jar core-connector.jar) into Dockerfile
+
+### properties for DFSP connection
+#dfsp:
+#  host: https://localhost/api
+#  username: user
+#  password: pass
+
+### properties for Mojaloop Connector connection
+#ml-conn:
+#  outbound:
+#    host:  http://localhost:3004

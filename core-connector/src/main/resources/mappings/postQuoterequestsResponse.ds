@@ -1,0 +1,14 @@
+local origPayload = cml.exchangeProperty('origPayload');
+
+{
+  "quoteId": origPayload.quoteId,
+  "transactionId": origPayload.transactionId,
+  "transferAmount": origPayload.amount,
+  "transferAmountCurrency": origPayload.currency,
+  "payeeReceiveAmount": origPayload.amount,
+  "payeeReceiveAmountCurrency": origPayload.currency,
+  "payeeFspFeeAmount": "0",
+  "payeeFspFeeAmountCurrency": origPayload.currency,
+  "payeeFspCommissionAmount": "0",
+  "payeeFspCommissionAmountCurrency": origPayload.currency,
+}
