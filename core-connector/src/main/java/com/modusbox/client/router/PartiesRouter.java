@@ -61,8 +61,8 @@ public class PartiesRouter extends RouteBuilder {
 						"'Calling DGTO backend API, collect, LOOKUP action', " +
 						"'Tracking the request', " +
 						"'Track the response', " +
-						"'Request sent to, POST https://dgto.ga/api/payments/collect Payload: ${body}')")
-				.toD("https://dgto.ga/api/payments/collect")
+						"'Request sent to, POST http://dgtof-saccos.co.tz/api/payments/collect Payload: ${body}')")
+				.toD("http://dgtof-saccos.co.tz/api/payments/collect")
 				.unmarshal().json(JsonLibrary.Gson)
 				.to("bean:customJsonMessage?method=logJsonMessage('info', ${header.X-CorrelationId}, " +
 						"'Response from DGTO backend API, collect, LOOKUP action,, getParties: ${body}', " +
