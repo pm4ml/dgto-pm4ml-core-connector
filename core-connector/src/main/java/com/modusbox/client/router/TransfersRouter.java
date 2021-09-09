@@ -104,8 +104,8 @@ public class TransfersRouter extends RouteBuilder {
                         "'Calling DGTO backend API, collect, CONFIRM_QUOTE action', " +
                         "'Tracking the request', " +
                         "'Track the response', " +
-                        "'Request sent to, POST http://dgtof-saccos.co.tz/api/payments/collect Payload: ${body}')")
-                .toD("http://dgtof-saccos.co.tz/api/payments/collect")
+                        "'Request sent to, POST http://dgtof-saccos.co.tz:8050/api/payments/collect Payload: ${body}')")
+                .toD("http://dgtof-saccos.co.tz:8050/api/payments/collect")
                 .unmarshal().json(JsonLibrary.Gson)
                 .to("bean:customJsonMessage?method=logJsonMessage(" +
                         "'info', " +
