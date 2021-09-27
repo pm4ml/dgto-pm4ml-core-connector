@@ -99,13 +99,19 @@ public class SendmoneyRouter extends RouteBuilder {
                 .removeHeaders("CamelHttp*")
                 .setHeader(Exchange.HTTP_METHOD, constant("PUT"))
                 .setHeader("Content-Type", constant("application/json"))
+            
+                .marshal().json()
+                .transform(datasonnet("resource:classpath:mappings/putTransfersAcceptPartyRequest.ds"))
+                .setBody(simple("${body.content}"))
+                .marshal().json()
+            
                 .to("bean:customJsonMessage?method=logJsonMessage('info', ${header.X-CorrelationId}, " +
                         "'Calling outbound API, putTransfersById', " +
                         "'Tracking the request', 'Track the response', " +
                         "'Request sent to PUT https://{{ml-conn.outbound.host}}/transfers/${header.transferId}')")
-                .marshal().json(JsonLibrary.Gson)
+            
                 .toD("{{ml-conn.outbound.host}}/transfers/${header.transferId}?bridgeEndpoint=true&throwExceptionOnFailure=false")
-                .unmarshal().json(JsonLibrary.Gson)
+                .unmarshal().json()
                 /*
                  * END processing
                  */
