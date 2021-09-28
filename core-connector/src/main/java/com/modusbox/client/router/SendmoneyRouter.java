@@ -106,37 +106,10 @@ public class SendmoneyRouter extends RouteBuilder {
                 .marshal().json()
             
                 .to("bean:customJsonMessage?method=logJsonMessage('info', ${header.X-CorrelationId}, " +
-                        "'Calling outbound API, putTransfersById' putTransfersById accepting Party', " +
+                        "'Calling outbound API, putTransfersById', " +
                         "'Tracking the request', 'Track the response', " +
                         "'Request sent to PUT https://{{ml-conn.outbound.host}}/transfers/${header.transferId}')")
             
-                .toD("{{ml-conn.outbound.host}}/transfers/${header.transferId}?bridgeEndpoint=true&throwExceptionOnFailure=false")
-                .unmarshal().json()
-                /*
-                 * END processing
-                 */
-                .to("bean:customJsonMessage?method=logJsonMessage(" +
-                        "'info', " +
-                        "${header.X-CorrelationId}, " +
-                        "'Response for PUT /sendmoney/${header.transferId}', " +
-                        "'Tracking the response', " +
-                        "null, " +
-                        "'Output Payload: ${body}')") // default logger
-            
-                .removeHeaders("CamelHttp*")
-                .setHeader(Exchange.HTTP_METHOD, constant("PUT"))
-                .setHeader("Content-Type", constant("application/json"))
-
-                .marshal().json()
-                .transform(datasonnet("resource:classpath:mappings/putTransfersAcceptQuoteRequest.ds"))
-                .setBody(simple("${body.content}"))
-                .marshal().json()
-
-                .to("bean:customJsonMessage?method=logJsonMessage('info', ${header.X-CorrelationId}, " +
-                        "'Calling outbound API, putTransfersById accepting Quote', " +
-                        "'Tracking the request', 'Track the response', " +
-                        "'Request sent to PUT https://{{ml-conn.outbound.host}}/transfers/${header.transferId}')")
-
                 .toD("{{ml-conn.outbound.host}}/transfers/${header.transferId}?bridgeEndpoint=true&throwExceptionOnFailure=false")
                 .unmarshal().json()
                 /*
