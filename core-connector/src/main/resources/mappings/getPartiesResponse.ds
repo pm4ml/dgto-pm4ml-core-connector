@@ -1,7 +1,7 @@
 {
   type: "CONSUMER",
   idType: cml.header('idType'),
-  idValue: ds.strings.substringAfter(cml.header('idValue'), "-"),
+  idValue: cml.header('idValue'),
   firstName: payload.data.first_name,
   lastName: payload.data.last_name
  }
