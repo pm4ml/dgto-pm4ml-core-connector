@@ -1,0 +1,7 @@
+// Recursively remove all "empty" members of payload.
+// "Empty" is defined as zero length `arrays`, zero length `objects`, or `null` values.
+local newFrom = {"from": std.prune(payload.from)};
+local newTo = {"to": std.prune(payload.to)};
+local newPayload = ds.remove(payload, ["to", "from"]);
+
+(newFrom + newTo) + newPayload
