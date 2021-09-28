@@ -621,6 +621,39 @@ components:
         - latitude
         - longitude
     
+    amountCurrency:
+      type: object
+      description: Object containing Amount and Currency of the transfer.
+      required:
+        - amount
+        - currency
+      properties:
+        amount:
+          $ref: '#/components/schemas/money'
+        currency:
+          $ref: '#/components/schemas/currency'
+
+    scenario:
+      type: string
+      enum:
+        - TRANSFER
+
+    transactionTypeObject:
+      type: object
+      description: Object containing transfer object.
+      required:
+        - scenario
+        - initiator
+        - initiatorType
+      properties:
+        scenario:
+          $ref: '#/components/schemas/scenario'
+        initiator:
+          $ref: '#/components/schemas/initiator'
+        initiatorType:
+          $ref: '#/components/schemas/initiatorType'
+          description: Specifies the type of the transaction initiator.
+    
     ilpPacketData:
       type: object
       description: Object containing transfer object.
