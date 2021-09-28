@@ -53,14 +53,7 @@ public class SendmoneyRouter extends RouteBuilder {
                         "'fspiop-source: ${header.fspiop-source} Input Payload: ${body}')") // default logger
                 /*
                  * BEGIN processing
-                 */
-                 
-                // Prune empty items from the request, like empty extensionList arrays at to and from
-                .marshal().json(JsonLibrary.Gson)
-                .transform(datasonnet("resource:classpath:mappings/postSendMoneyRequest.ds"))
-                .setBody(simple("${body.content}"))
-                .marshal().json(JsonLibrary.Gson)
-            
+                 */            
                 .setProperty("origPayload", simple("${body}"))
                 .removeHeaders("CamelHttp*")
                 .setHeader(Exchange.HTTP_METHOD, constant("POST"))
