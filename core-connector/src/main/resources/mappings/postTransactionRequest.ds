@@ -1,6 +1,6 @@
 {
     "action": "TRANSFER",
-    "msisdn": ds.strings.substringAfter(payload.quoteRequest.body.payee.partyIdInfo.partyIdentifier, "-"),
-    "reference_number": ds.strings.substringBefore(payload.quoteRequest.body.payee.partyIdInfo.partyIdentifier, "-"),
+    "msisdn": payload.quoteRequest.body.payee.partyIdInfo.partyIdentifier,
+    "reference_number": "400932B1",
     "amount": payload.prepare.body.amount.amount
 }
