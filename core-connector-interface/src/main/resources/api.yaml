@@ -1351,6 +1351,13 @@ components:
           $ref: '#/components/schemas/money'
         transactionType:
           $ref: '#/components/schemas/transactionType'
+        ilpPacket:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/components/schemas/ilpPacketData'
         note:
           maxLength: 128
           type: string
