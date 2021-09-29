@@ -1,4 +1,4 @@
 {
     "action": "LOOKUP",
-    "msisdn": cml.header('idValue')
+    "msisdn": cml.header('idValue')[15:]
 }
