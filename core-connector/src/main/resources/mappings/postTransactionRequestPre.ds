@@ -1,0 +1,6 @@
+{
+    "action": "TRANSFER",
+    "msisdn": payload.body.to.idValue[15:],
+    "reference_number": payload.body.to.idValue[0:15],
+    "amount": payload.body.ilpPacket.data.amount.amount
+}
