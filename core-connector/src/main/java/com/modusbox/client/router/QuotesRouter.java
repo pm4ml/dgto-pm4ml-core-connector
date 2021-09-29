@@ -44,34 +44,8 @@ public class QuotesRouter extends RouteBuilder {
 				 * BEGIN processing
 				 */
 				.setProperty("origPayload", simple("${body}"))
-				//.setHeader("mfiName", simple("{{dfsp.name}}"))
-				.setHeader("action", simple("CONFIRM_QUOTE"))
-				.setHeader("msisdn", simple("${body.getTo().getIdValue()}"))
-				.setHeader("amount", simple("${body.getAmount()}"))
-				.setHeader("reference_number", simple("400932B1"))
+		                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(200))
 
-				.marshal().json()
-				.transform((datasonnet("resource:classpath:mappings/postCollectConfirmQuoteRequest.ds")))
-				.setBody(simple("${body.content}"))
-				.marshal().json(JsonLibrary.Gson)
-
-				.removeHeaders("CamelHttp*")
-				.removeHeader(Exchange.HTTP_URI)
-				.setHeader("Content-Type", constant("application/json"))
-				.setHeader("Accept", constant("application/json"))
-				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
-				.to("bean:customJsonMessage?method=logJsonMessage(" +
-						"'info', " +
-						"${header.X-CorrelationId}, " +
-						"'Calling DGTO backend API, collect, CONFIRM_QUOTE action', " +
-						"'Tracking the request', " +
-						"'Track the response', " +
-						"'Request sent to, POST http://dgtof-saccos.co.tz:8050/api/payments/collect Payload: ${body}')")
-				.toD("http://dgtof-saccos.co.tz:8050/api/payments/collect")
-				.unmarshal().json(JsonLibrary.Gson)
-				.to("bean:customJsonMessage?method=logJsonMessage('info', ${header.X-CorrelationId}, " +
-						"'Response from DGTO backend API, collect, CONFIRM_QUOTE action, postQuotes: ${body}', " +
-						"'Tracking the response', 'Verify the response', null)")
 				.marshal().json()
 				.transform(datasonnet("resource:classpath:mappings/postQuoterequestsResponse.ds"))
 				.setBody(simple("${body.content}"))
