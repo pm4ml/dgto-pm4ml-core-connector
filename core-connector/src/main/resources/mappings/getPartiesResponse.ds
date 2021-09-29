@@ -1,7 +1,7 @@
 {
   type: "CONSUMER",
   idType: cml.header('idType'),
-  idValue: cml.header('idValue')[15:],
+  idValue: cml.header('idValue'),
   firstName: payload.data.first_name,
   lastName: payload.data.last_name
  }
