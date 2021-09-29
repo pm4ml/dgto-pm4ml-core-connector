@@ -702,10 +702,10 @@ components:
           $ref: '#/components/schemas/transactionId'
           description: Identifier for the transaction, decided by the Payer FSP during the creation of the quote.
         payer:
-          $ref: '#/components/schemas/transferPartyInbound'
+          $ref: '#/components/schemas/Party'
           description: Information about the Payer in the proposed financial transaction.
         payee:
-          $ref: '#/components/schemas/transferPartyInbound'
+          $ref: '#/components/schemas/Party'
           description: Information about the Payee in the proposed financial transaction.
         amount:
           $ref: '#/components/schemas/amountCurrency'
