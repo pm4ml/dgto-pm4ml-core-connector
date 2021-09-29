@@ -58,7 +58,7 @@ public class TransfersRouter extends RouteBuilder {
                  * BEGIN processing
                  */
                 .marshal().json()
-                .transform(datasonnet("resource:classpath:mappings/postTransactionRequest.ds"))
+                .transform(datasonnet("resource:classpath:mappings/postTransactionRequestPre.ds"))
                 .setBody(simple("${body.content}"))
                 .marshal().json()
 
